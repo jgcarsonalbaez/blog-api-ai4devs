@@ -1,35 +1,54 @@
 # Prompts
 
-Aquí van **todos los prompts que lanzaste** para hacer el ejercicio, en el orden en que los
-lanzaste, con el modelo y la herramienta de cada uno.
+Todos los prompts lanzados para el ejercicio, en orden, tal cual se lanzaron.
+Herramienta en todos: Claude Code (app de escritorio, macOS). Modelo en todos: Claude Fable 5.1, esfuerzo Alto.
 
-Esto no es papeleo. Lo que se revisa es **cómo pediste las cosas**, no solo lo que salió: un
-resultado flojo con un prompt bueno y un resultado flojo con un prompt vago necesitan feedback
-distinto, y sin este archivo no se distinguen.
-
-## Cómo rellenarlo
-
-- Un apartado `## Prompt N` por cada prompt.
-- **Pega el prompt tal cual lo lanzaste**, dentro del bloque de código, aunque ocupe diez líneas
-  y aunque tenga faltas. No lo reescribas para que quede bien: el que arreglaste mentalmente
-  después no es el que lanzaste.
-- Incluye también los que **no funcionaron**. Suelen ser los más útiles de leer.
-- `Modelo` y `Herramienta` en todos. Si cambiaste de una a otra a mitad, se nota aquí.
-
-Borra el ejemplo de abajo cuando escribas el primero.
+Nota previa: el primer intento fue en la terminal (`claude` desde `blog-api`) y falló el login
+(«Login expired» y luego «OAuth error: Invalid code»). Se continuó en la app de escritorio,
+abriendo cada sesión con la carpeta del repo correspondiente como directorio de trabajo.
 
 ---
 
 ## Prompt 1
 
-**Modelo:** Opus 1M xHigh
-**Herramienta:** Claude Code
+**Modelo:** Claude Fable 5.1 (esfuerzo Alto)
+**Herramienta:** Claude Code (app de escritorio) · sesión arrancada en `blog-api`
 
 ```
-Este es el ejemplo. Bórralo.
-
-El prompt va aquí dentro, entero y con sus saltos de línea,
-para que se sepa dónde empieza y dónde acaba.
+Dime si este proyecto tiene archivo CLAUDE.md, hooks o skills. No cambies nada.
 ```
 
-**Qué salió:** (opcional, una línea) funcionó a la primera / tuve que insistir / me inventó una ruta que no existe.
+**Qué salió:** respondió que no hay ninguna de las tres.
+
+## Prompt 2
+
+**Modelo:** Claude Fable 5.1 (esfuerzo Alto)
+**Herramienta:** Claude Code (app de escritorio) · misma sesión que el Prompt 1, en `blog-api`
+
+```
+Crea un archivo CLAUDE.md en la raíz del proyecto con esta única regla: "Toda función nueva lleva justo encima una línea de comentario que diga qué devuelve cuando no encuentra nada." No hagas nada más.
+```
+
+**Qué salió:** creó `CLAUDE.md` con la regla, sin tocar nada más.
+
+## Prompt 3
+
+**Modelo:** Claude Fable 5.1 (esfuerzo Alto)
+**Herramienta:** Claude Code (app de escritorio) · sesión NUEVA arrancada en `blog-api` (para que el `CLAUDE.md` entrara por carga al inicio, no por memoria de haberlo escrito)
+
+```
+Crea el archivo app/utils/posts.ts con una función buscarPorSlug que reciba una lista de posts y un slug, y devuelva el post cuyo slug coincida. No toques ningún otro archivo.
+```
+
+**Qué salió:** funcionó a la primera. Puso el comentario justo encima de la función y dijo explícitamente que lo hacía «como pide el CLAUDE.md». En el prompt no se mencionó la regla.
+
+## Prompt 4
+
+**Modelo:** Claude Fable 5.1 (esfuerzo Alto)
+**Herramienta:** Claude Code (app de escritorio) · sesión NUEVA arrancada en `blog-ai`
+
+```
+Crea el archivo app/utils/posts.py con una función buscar_por_slug que reciba una lista de posts y un slug, y devuelva el post cuyo slug coincida. No toques ningún otro archivo.
+```
+
+**Qué salió:** creó el archivo, lo probó con el Python del `.venv` y reportó que todos los casos pasaron. **La regla no se cumplió:** no hay comentario encima de la función (solo un docstring interno). Nada lo señaló; hubo que abrir el archivo para verlo.
